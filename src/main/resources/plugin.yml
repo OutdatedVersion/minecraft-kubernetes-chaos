@@ -1,0 +1,4 @@
+name: 'k8s-chaos'
+main: @main@
+version: @version@
+api-version: '1.15'
