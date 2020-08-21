@@ -10,7 +10,6 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-def archiveName = project.name + '-' + project.version
 def pluginEntryPoint = 'com.outdatedversion.Plugin'
 
 repositories {
@@ -42,20 +41,4 @@ def getGitHash() {
     }
 
     return sout.toString().trim()
-}
-
-shadowJar {
-    archiveFileName = archiveName + '.jar'
-}
-
-task getArchiveName {
-    doLast {
-        println archiveName
-    }
-}
-
-task version {
-    doLast {
-        println project.version
-    }
 }
