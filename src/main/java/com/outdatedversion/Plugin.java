@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -187,11 +187,14 @@ public class Plugin extends JavaPlugin implements Listener {
 
             final EntityType[] options = new EntityType[] {
                 EntityType.ZOMBIE,
+                EntityType.ZOMBIFIED_PIGLIN,
                 EntityType.SKELETON,
                 EntityType.SPIDER,
-                EntityType.PIG_ZOMBIE
+                EntityType.POLAR_BEAR,
+                EntityType.BLAZE,
+                EntityType.ZOGLIN
             };
-            final EntityType type = options[new Random().nextInt(options.length)];
+            final EntityType type = options[ThreadLocalRandom.current().nextInt(options.length)];
 
             final Entity entity = this.location.getWorld().spawnEntity(this.location, type);
 
