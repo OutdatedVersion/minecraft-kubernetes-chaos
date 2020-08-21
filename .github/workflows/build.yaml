@@ -21,8 +21,12 @@ jobs:
            run: chmod +x gradlew
          - name: Build with Gradle
            run: ./gradlew shadowJar
+         - name: Set environment variables
+           run: |
+             export ARCHIVE_NAME=$(./gradlew getArchiveName --quiet)
+             echo "::set-env name=ARCHIVE_NAME::$ARCHIVE_NAME"
          - name: Upload jar
            uses: actions/upload-artifact@v2
            with:
-             name: jars
-             path: build/libs/*.jar
+             name: shadow-jar
+             path: 'build/libs/${{ env.ARCHIVE_NAME }}.jar'
