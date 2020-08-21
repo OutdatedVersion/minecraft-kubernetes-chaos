@@ -1,0 +1,26 @@
+name: Build jar
+
+on:
+   push:
+      branches: [dev]
+   pull_request:
+      branches: [dev]
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v2
+         - name: Set up JDK 1.8
+           uses: actions/setup-java@v1
+           with:
+              java-version: 1.8
+         - name: Grant execute permission for gradlew
+           run: chmod +x gradlew
+         - name: Build with Gradle
+           run: ./gradlew shadowJar
+         - name: Upload jar
+           uses: actions/upload-artifact@v2
+           with:
+             name: jars
+             path: build/libs/*.jar

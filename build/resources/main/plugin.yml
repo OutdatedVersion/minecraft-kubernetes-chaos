@@ -1,0 +1,4 @@
+name: 'k8s-chaos'
+main: com.outdatedversion.Plugin
+version: 1.0-SNAPSHOT-57dbf47
+api-version: '1.15'

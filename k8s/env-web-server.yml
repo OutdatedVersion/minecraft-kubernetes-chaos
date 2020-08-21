@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: env-web-server
+  labels:
+    app: test
+spec:
+  replicas: 30
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: env-web-server
+        image: docker.pkg.github.com/outdatedversion/env-web-server/server:dev-96ddb9b
+        ports:
+        - containerPort: 80
+        env:
+           - name: BODY
+             value: test
